@@ -1,6 +1,8 @@
 from rest_framework.views import APIView
-from rest_framework.response import Response
+from rest_framework import status
 import subprocess
+
+from utils.ResponseHelper import successResponse, failedResponse
 
 
 class Exercise(APIView):
@@ -26,14 +28,8 @@ class Exercise(APIView):
             text=True
         )
 
-        # Check if there was an error
+        # Check if there is an error
         if result.returncode != 0:
-            return Response({
-                'status': 'error',
-                'output': result.stderr
-            })
+            return failedResponse(result.stderr, status.HTTP_500_INTERNAL_SERVER_ERROR)
         else:
-            return Response({
-                'status': 'success',
-                'output': result.stdout
-            })
+            return successResponse(result.stdout)

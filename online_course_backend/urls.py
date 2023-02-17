@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from exercise.views import Exercise
+from course.views import Course
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/exercise', Exercise.as_view()),
+    path('api/courses', Course.as_view()),
+    path('api/courses/<int:course_id>', Course.as_view(), name='course'),
 ]

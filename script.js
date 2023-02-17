@@ -1,1 +1,1 @@
-console.log('Hello, Arizi!');
+console.log('Hello World') error
