@@ -20,7 +20,7 @@ from course.views import Course
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/exercise', Exercise.as_view()),
-    path('api/courses', Course.as_view()),
+    path('api/exercise', Exercise.as_view(), name='exercise'),
+    path('api/courses', Course.as_view(), name='courses'),
     path('api/courses/<int:course_id>', Course.as_view(), name='course'),
 ]
